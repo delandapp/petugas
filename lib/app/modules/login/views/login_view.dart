@@ -78,6 +78,9 @@ class LoginView extends GetView<LoginController> {
             ),
             ),
             ),
+            const Padding(
+                    padding: EdgeInsets.symmetric(vertical: 5)
+            ),
             Container(
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.center,
@@ -115,8 +118,8 @@ class LoginView extends GetView<LoginController> {
                   ],
                 ),
             ),
-            Padding(padding: EdgeInsets.only(top: 20)),
-            Wrap(
+            const Padding(padding: EdgeInsets.only(top: 20)),
+            const Wrap(
               alignment: WrapAlignment.center,
               crossAxisAlignment: WrapCrossAlignment.center,
               spacing: 10,
@@ -134,7 +137,7 @@ class LoginView extends GetView<LoginController> {
                 )
               ],
             ),
-            Padding(padding: EdgeInsets.only(top: 10)),
+             const Padding(padding: EdgeInsets.only(top: 10)),
             Container(
                 margin: const EdgeInsets.only(top: 25.0),
                 padding: const EdgeInsets.symmetric(horizontal: 20),
@@ -146,7 +149,7 @@ class LoginView extends GetView<LoginController> {
                         height: 45.0,
                         child: ElevatedButton.icon(
                           style: ElevatedButton.styleFrom(
-                            backgroundColor: Color(0xFFFAFAFA),
+                            backgroundColor:const Color(0xFFFAFAFA),
                             shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(10),
                             ),
@@ -168,20 +171,20 @@ class LoginView extends GetView<LoginController> {
                       ),
                     ),
 
-                    SizedBox(width: 5),
+                    const SizedBox(width: 5),
 
                     Expanded(
                       child: SizedBox(
                         height: 45.0,
                         child: ElevatedButton.icon(
                           style: ElevatedButton.styleFrom(
-                            backgroundColor: Color(0xFF080ba1),
+                            backgroundColor: const Color(0xFF080ba1),
                             shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(10),
                             ),
                           ),
-                          icon: Icon(Icons.access_alarms_rounded),
-                          label: Text('Google'),
+                          icon: const Icon(Icons.access_alarms_rounded),
+                          label: const Text('Google'),
                           onPressed: () {
                             // Tambahkan fungsi untuk tombol Facebook di sini
                           },

@@ -9,6 +9,7 @@ import 'package:flutter_application_2/app/data/provider/storage_provider.dart';
 import 'package:flutter_application_2/app/routes/app_pages.dart';
 import 'package:get/get.dart';
 import 'package:dio/dio.dart' as dio;
+import 'package:get_storage/get_storage.dart';
 
 class LoginController extends GetxController {
   final loadingLogin = false.obs;
@@ -54,6 +55,9 @@ class LoginController extends GetxController {
             }));
         if (response.statusCode == 200) {
           await StorageProvider.write(StorageKey.status, "logged");
+          await GetStorage.init();
+          final user = GetStorage();
+          user.write('id', response.data['data']['id']);
           Get.offAllNamed(Routes.HOME);
         } else {
           Get.snackbar("Login Failed", "Username or Password Invalid",

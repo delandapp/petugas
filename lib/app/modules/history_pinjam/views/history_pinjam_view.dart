@@ -1,15 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:intl/intl.dart';
+
 import 'package:get/get.dart';
 
-import '../../../routes/app_pages.dart';
-import '../controllers/peminjaman_controller.dart';
+import '../controllers/history_pinjam_controller.dart';
 
-class PeminjamanView extends GetView<PeminjamanController> {
-  const PeminjamanView({Key? key}) : super(key: key);
+class HistoryPinjamView extends GetView<HistoryPinjamController> {
+  const HistoryPinjamView({Key? key}) : super(key: key);
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context)  {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Color(0xFF080ba1),
@@ -24,19 +23,13 @@ class PeminjamanView extends GetView<PeminjamanController> {
         centerTitle: true,
       ),
 
-      floatingActionButton: FloatingActionButton(
-        backgroundColor: Color(0xFF080ba1),
-        onPressed: () => Get.toNamed(Routes.HISTORY_PINJAM),
-        child: Icon(FontAwesomeIcons.history),
-      ),
-
       body: controller.obx((state) => ListView.separated(
         itemCount: state!.length,
         itemBuilder: (context, index){
           return ListTile(
             leading: Icon(FontAwesomeIcons.book),
             title: Text(
-              "${state[index].judul}",
+              "${state[index].book?.judul}",
               style: TextStyle(
                 fontSize: 16.0,
                 fontFamily: 'Montserrat',
@@ -45,7 +38,7 @@ class PeminjamanView extends GetView<PeminjamanController> {
               ),
             ),
             subtitle: Text(
-              "Kategori buku ${state[index].kategori?.nama}",
+              "Tanggal Kembali ${controller.formatTanggal(state[index].tanggalKembali)}",
               style: TextStyle(
                 fontSize: 14.0,
                 height: 1.8,
@@ -57,12 +50,12 @@ class PeminjamanView extends GetView<PeminjamanController> {
             ),
             trailing: SizedBox(
               child: ElevatedButton(
+                style: ElevatedButton.styleFrom(backgroundColor:controller.statusColor(state[index].status)),
                 onPressed: () {
-                  controller.submitPinjam(id: state[index].id.toString(), bookJudul: state[index].judul.toString());
+                  
                 },
                 child: Text(
-                  'Pinjam',
-                ),
+                  "${state[index].status == 'dipinjam' ? 'Dikembalikan' : 'Dipinjam'}"),
               ),
             )
 
@@ -75,3 +68,5 @@ class PeminjamanView extends GetView<PeminjamanController> {
     );
   }
 }
+
+

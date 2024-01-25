@@ -1,13 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:intl/intl.dart';
+
 import 'package:get/get.dart';
 
-import '../../../routes/app_pages.dart';
-import '../controllers/peminjaman_controller.dart';
+import '../controllers/add_koleksi_controller.dart';
 
-class PeminjamanView extends GetView<PeminjamanController> {
-  const PeminjamanView({Key? key}) : super(key: key);
+class AddKoleksiView extends GetView<AddKoleksiController> {
+  const AddKoleksiView({Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -22,12 +21,6 @@ class PeminjamanView extends GetView<PeminjamanController> {
           ),
         ),
         centerTitle: true,
-      ),
-
-      floatingActionButton: FloatingActionButton(
-        backgroundColor: Color(0xFF080ba1),
-        onPressed: () => Get.toNamed(Routes.HISTORY_PINJAM),
-        child: Icon(FontAwesomeIcons.history),
       ),
 
       body: controller.obx((state) => ListView.separated(
@@ -58,10 +51,10 @@ class PeminjamanView extends GetView<PeminjamanController> {
             trailing: SizedBox(
               child: ElevatedButton(
                 onPressed: () {
-                  controller.submitPinjam(id: state[index].id.toString(), bookJudul: state[index].judul.toString());
+                  controller.addFavorit(judulBook: state[index].judul.toString(), idbook: int.parse(state[index].id.toString()));
                 },
                 child: Text(
-                  'Pinjam',
+                  'Add Favorite',
                 ),
               ),
             )
